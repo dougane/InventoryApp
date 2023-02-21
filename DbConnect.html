@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <style>
+      body {
+        font-family: Verdana,Tahoma, sans-serif;
+        text-align: center;
+      }
+      h1 {
+        margin-top: 50px;
+      }
+      form {
+        margin-top: 30px;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      input[type=text], input[type=password] {
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      button[type=submit], button[type=button] {
+        padding: 10px 20px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      button[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+      }
+      button[type=button] {
+        background-color: #f44336;
+        color: white;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Login to Inventory Management App</h1>
+    <form>
+      <label for="dbname">Database Name</label>
+      <input type="text" id="dbname" name="dbname" placeholder="Enter database name..." required>
+
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter username..." required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter password..." required>
+
+      <button type="button" onclick="closeApp()">Close</button>
+      <button type="submit" onclick ="ConnectDB()">Connect</button>
+    </form>
+    
+
+    <script>
+        function ConnectDB() {
+          // Ill add the code to connect to the mongoDB here.
+        }
+    </script>
+    <script>
+      function closeApp() {
+        // Ill add the cose to close the app here.
+        alert("App closed.");
+      }
+    </script>
+    
+  </body>
+</html>
