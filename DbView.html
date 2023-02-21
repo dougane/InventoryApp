@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <body style="background-color:lightgrey"></body>
+  <head>
+    <title>View Current Items in Inventory</title>
+    <style>
+      body {
+        font-family: Verdana,Tahoma, sans-serif;
+        text-align: center;
+      }
+      h1 {
+        margin-top: 50px;
+      }
+      table {
+        margin: 30px auto;
+        border-collapse: collapse;
+        border: 2px solid #ccc;
+        background-color: lightgoldenrodyellow
+      }
+      th, td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        color: darkgreen;
+      }
+      th {
+        background-color: lightgoldenrodyellow
+      }
+      button[type=button] {
+        padding: 10px 20px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        background-color: #4CAF50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Current Items in Inventory</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Item Description</th>
+          <th>Barcode</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- This is where it will pull the data from my mongoDB database "InventoryDB"-->
+        <tr>
+          <td>Iphone</td>
+          <td>Description 1</td>
+          <td>111</td>
+          <td>10</td>
+          <td>$500.00</td>
+        </tr>
+        <tr>
+          <td>Ipad</td>
+          <td>Description 2</td>
+          <td>222</td>
+          <td>20</td>
+          <td>$800.00</td>
+        </tr>
+        <tr>
+          <td>Macbook Pro</td>
+          <td>Description 3</td>
+          <td>333</td>
+          <td>200</td>
+          <td>$1500.00</td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="submit" onclick ="AddDb()">Add Items</button>
+    <script>
+        function AddDb() {
+          // Ill add the code to add new inventory items here
+          alert("Item Added.");
+        }
+      </script>
+  </body>
+</html>
