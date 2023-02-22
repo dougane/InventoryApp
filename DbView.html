@@ -2,7 +2,44 @@
 <html>
     <body style="background-color:lightgrey"></body>
   <head>
+    <style type="text/css">
+      .context-menu {
+          position: absolute;
+          text-align: center;
+          background: lightgray;
+          border: 1px solid black;
+      }
+
+      .context-menu ul {
+          padding: 0px;
+          margin: 0px;
+          min-width: 150px;
+          list-style: none;
+      }
+
+      .context-menu ul li {
+          padding-bottom: 7px;
+          padding-top: 7px;
+          border: 1px solid black;
+      }
+
+      .context-menu ul li a {
+          text-decoration: none;
+          color: black;
+      }
+
+      .context-menu ul li:hover {
+          background: darkgray;
+      }
+  </style>
     <title>View Current Items in Inventory</title>
+    <div id="contextMenu" class="context-menu" 
+        style="display:none">
+        <ul>
+            <li><a href="#">Edit Item</a></li>
+            <li><a href="#">Remove Item</a></li>
+        </ul>
+    </div>
     <style>
       body {
         font-family: Verdana,Tahoma, sans-serif;
@@ -77,6 +114,31 @@
       </tbody>
     </table>
     <button type="submit" onclick ="AddDb()">Add Items</button>
+    <script>
+      document.onclick = hideMenu;
+      document.oncontextmenu = rightClick;
+
+      function hideMenu() {
+          document.getElementById(
+              "contextMenu").style.display = "none"
+      }
+
+      function rightClick(e) {
+          e.preventDefault();
+
+          if (document.getElementById(
+              "contextMenu").style.display == "block")
+              hideMenu();
+          else {
+              var menu = document
+                  .getElementById("contextMenu")
+                    
+              menu.style.display = 'block';
+              menu.style.left = e.pageX + "px";
+              menu.style.top = e.pageY + "px";
+          }
+      }
+  </script>
     <script>
         function AddDb() {
           // Ill add the code to navigate to add new inventory item page
