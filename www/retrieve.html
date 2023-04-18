@@ -38,7 +38,30 @@
         color: #003300;
         text-decoration: underline;
     }
-</style>
+    .button {
+        background-color: #006600;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+    .delete-button {
+        background-color: red;
+        margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Items in stock</h1>
+  <div id="records"></div>
+  <button class="button" onclick="location.href='create.html'">Add</button>
+  <button class="button" onclick="location.href='update.html'">Update</button>
+  <button class="button delete-button" onclick="location.href='delete.html'">Delete</button>
   <script>
     window.addEventListener("load", readAll);
     function readAll() {
@@ -58,9 +81,5 @@
         });
     }
   </script>
-</head>
-<body>
-  <h1>Items in stock</h1>
-  <div id="records"></div>
 </body>
 </html>
