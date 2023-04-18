@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Delete Item From Inventory</title>
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+			color: #006600;
+			text-align: center;
+		}
+		h1 {
+			color: #006600;
+		}
+		table {
+			margin: 0 auto;
+			border-collapse: collapse;
+			background-color: #ffffcc;
+			width: 80%;
+			margin-top: 50px;
+		}
+		th, td {
+			padding: 10px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #006600;
+			color: #fff;
+		}
+		a {
+			color: #006600;
+			text-decoration: none;
+			font-weight: bold;
+		}
+		a:hover {
+			color: #003300;
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body>
+	<h1>Delete Item From Inventory</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ItemBarcode</th>
+				<th>ItemName</th>
+				<th>ItemAmount</th>
+				<th>ItemDesc</th>
+			</tr>
+		</thead>
+		<tbody id="deleteList"></tbody>
+	</table>
+	<script language="javascript">
+		window.addEventListener("load", readAll);
+		function readAll() {
+			fetch("http://localhost:7777/retrieve")
+			.then(response => response.json())
+			.then(function(data) {
+				data.forEach(row => {
+					var tr = document.createElement("tr");
+					tr.innerHTML = `<td><a href=delete-one.html?ItemBarcode=${row.ItemBarcode}>${row.ItemBarcode}</a></td><td>${row.ItemName}</td><td>${row.ItemAmount}</td><td>${row.ItemDesc}</td>`;
+					deleteList.appendChild(tr);
+				})
+			})
+		}
+	</script>
+</body>
+</html>

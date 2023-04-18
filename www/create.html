@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Add to Inventory</title>
+  <style>
+    body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        color: #006600;
+        text-align: center;
+    }
+    h1 {
+        color: #006600;
+    }
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        background-color: #ffffcc;
+        width: 80%;
+        margin-top: 50px;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #006600;
+        color: #fff;
+    }
+    a {
+        color: #006600;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    a:hover {
+        color: #003300;
+        text-decoration: underline;
+    }
+</style>
+  <script>
+    window.addEventListener("load", main);
+    function main() {
+      btn.addEventListener("click", sendData);
+    }
+    function sendData() {
+      let data = {
+        ItemBarcode: ItemBarcode.value,
+        ItemName: ItemName.value,
+        ItemAmount: ItemAmount.value,
+        ItemDesc: ItemDesc.value
+      };
+      let url = "http://localhost:7777/create";
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+      location.href = "retrieve.html";
+    }
+  </script>
+</head>
+<body>
+    <h1>Add an Item to Inventory</h1>
+    <table>
+        <tr>
+          <th>Item Barcode</th>
+          <th>Item Name</th>
+          <th>Item Amount</th>
+          <th>Item Description</th>
+        </tr>
+        <tr>
+          <td><input id="ItemBarcode"></td>
+          <td><input id="ItemName"></td>
+          <td><input id="ItemAmount"></td>
+          <td><input id="ItemDesc"></td>
+        </tr>
+      </table>
+      <input type="button" id="btn" value="Add">
+</body>
+</html>
