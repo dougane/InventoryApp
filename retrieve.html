@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Items in stock</title>
+  <style>
+    body {
+      background-image: url('back3.jpg');
+      font-family: Arial, sans-serif;
+      color: #006600;
+      text-align: center;
+  }
+    h1 {
+        color: #006600;
+    }
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        background-color: #ffffcc;
+        width: 80%;
+        margin-top: 50px;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #006600;
+        color: #fff;
+    }
+    a {
+        color: #006600;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    a:hover {
+        color: #003300;
+        text-decoration: underline;
+    }
+    .button {
+        background-color: #006600;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+    .delete-button {
+        background-color: red;
+        margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Items in stock</h1>
+  <div id="records"></div>
+  <button class="button" onclick="location.href='create.html'">Add</button>
+  <button class="button" onclick="location.href='update.html'">Update</button>
+  <button class="button delete-button" onclick="location.href='delete.html'">Delete</button>
+  <script>
+    window.addEventListener("load", readAll);
+    function readAll() {
+      fetch("http://localhost:7777/retrieve")
+        .then(response => response.json())
+        .then(function(data) {
+          let table = document.createElement("table");
+          let thead = table.createTHead();
+          let headerRow = thead.insertRow();
+          headerRow.innerHTML = "<th>Item Barcode</th><th>Item Name</th><th>Item Amount</th><th>Item Description</th>";
+          let tbody = table.createTBody();
+          data.forEach(row => {
+            let tr = tbody.insertRow();
+            tr.innerHTML = `<td>${row.ItemBarcode}</td><td>${row.ItemName}</td><td>${row.ItemAmount}</td><td>${row.ItemDesc}</td>`;
+          });
+          records.appendChild(table);
+        });
+    }
+  </script>
+</body>
+</html>

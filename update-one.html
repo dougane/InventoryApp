@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Update an Item</title>
+  <style>
+    body {
+      background-image: url('back3.jpg');
+      font-family: Arial, sans-serif;
+      color: #006600;
+      text-align: center;
+  }
+    h1 {
+        color: #006600;
+    }
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        background-color: #ffffcc;
+        width: 80%;
+        margin-top: 50px;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #006600;
+        color: #fff;
+    }
+    a {
+        color: #006600;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    a:hover {
+        color: #003300;
+        text-decoration: underline;
+    }
+    button {
+        background-color: #006600;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+  </style>
+
+  <script language="javascript">
+    window.addEventListener("load", main)
+    function main() {
+      readOne()
+      btn.addEventListener("click", writeOne)
+    }
+    function readOne() {
+      params = (new URL(document.location)).searchParams
+      id = params.get("ItemBarcode")
+      fetch("http://localhost:7777/retrieve-one/"+id)
+        .then(response => response.json())
+        .then(function(data) {
+          ItemBarcode.value = data.ItemBarcode
+          ItemName.value = data.ItemName
+          ItemAmount.value = data.ItemAmount
+          ItemDesc.value = data.ItemDesc
+        })
+    }
+    function writeOne() {
+      data = {
+        ItemBarcode : ItemBarcode.value,
+        ItemName : ItemName.value,
+        ItemAmount : ItemAmount.value,
+        ItemDesc : ItemDesc.value
+      }
+      fetch("http://localhost:7777/update", {
+        method : 'PUT',
+        headers : { "Content-Type": "application/json"},
+        body : JSON.stringify(data)
+      })
+      location.href="retrieve.html"
+    }
+  </script>
+</head>
+<body>
+  <h1>Update an Item</h1>
+  <table>
+    <tr>
+      <th>Item Barcode</th>
+      <th>Item Name</th>
+      <th>Item Amount</th>
+      <th>Item Description</th>
+    </tr>
+    <tr>
+      <td><input id="ItemBarcode" style="visibility:hidden"></td>
+      <td><input id="ItemName"></td>
+      <td><input id="ItemAmount"></td>
+      <td><input id="ItemDesc"></td>
+    </tr>
+  </table>
+  <button id="btn">Update</button>
+  <button onclick="location.href='delete.html'" style="background-color: red;">Delete</button>
+</body>
+</html>
